@@ -1,10 +1,9 @@
 * {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App {
-  /* background-image: url(./img/rain.jpg);
-  background-size: 100vw; */
   display: flex;
   flex-direction: column;
 }
