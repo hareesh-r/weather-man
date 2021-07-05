@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+}
+
+.App {
+  background-image: url(./img/cloudy.jpg);
+  background-size: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.response {
+  text-align: center;
+  color: #fff;
+  font-size: larger;
+}
+
+.top {
+  width: 100vw;
+  height: 25vh;
+  color: #fff;
+  background: linear-gradient(45deg, rgba(236, 132, 113, 0.5), rgba(149, 19, 81, 0.5));
+  flex-wrap: wrap;
+}
+
+.importantCities img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  margin-right: 20px;
+}
+
+.importantCities {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  filter: drop-shadow(0px 30px 10px #000);
+  transition: all 0.3s ease-in-out;
+}
+
+.importantCities p {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.importantCities:hover {
+  transform: scale(1.2);
+}
+
+.importantCity {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 2vh;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
