@@ -28,7 +28,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div id="app" className="App light">
       <div className="top">
         <div className="importantCity">
         <div className="importantCities mumbai">
@@ -64,9 +64,116 @@ function App() {
         </div>
         <div className="search">
           <input type="text" onChange={(e) => { setCity(e.target.value) }} />
-          <button onClick={() => { getResponse(BASE_URL, city) }}>Print JSON Object</button>
+          <button onClick={() => { getResponse(BASE_URL, city) }}>Search</button>
         </div>
       </div>
+      <div className="left"> 
+          <h2>Mumbai , India</h2>
+          <h3>9:00 AM</h3>
+          <h4>30 May</h4>
+          <h5>Thursday</h5>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
