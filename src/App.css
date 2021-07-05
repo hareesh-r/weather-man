@@ -92,7 +92,8 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.search button {
+.search button,
+.left button {
   outline: none;
   border: none;
   border-radius: 18px;
@@ -104,7 +105,7 @@
 
 .left {
   color: #fff;
-  max-width: 422px;
+  min-width: 422px;
   height: 70vh;
   background: linear-gradient(rgba(236, 132, 113, 0.5), rgba(104, 54, 57, 0.6),
       rgba(51, 24, 33, 0.6));
@@ -117,7 +118,8 @@
 .left * {
   margin-top: 10px;
 }
-.left img{
+
+.left img {
   width: 150px;
   height: 150px;
 }
@@ -126,6 +128,34 @@
 h2,
 h3,
 h4,
-h5 , .left code{
+h5,
+.left code {
   text-transform: capitalize;
+}
+
+.left button {
+  padding: 20px;
+  background: linear-gradient(45deg, rgba(86, 70, 236, 0.9), rgba(250, 91, 91, 0.9), rgba(86, 70, 236, 0.9));
+  background-size: 100%;
+  transition: all 1s ease-in-out;
+}
+
+.left button:hover {
+  background-size: 200%;
+}
+
+.startup {
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  width: 100%;
+  height: 70vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
 }
