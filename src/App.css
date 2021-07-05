@@ -3,8 +3,8 @@
 }
 
 .App {
-  background-image: url(./img/rain.jpg);
-  background-size: 100vw;
+  /* background-image: url(./img/rain.jpg);
+  background-size: 100vw; */
   display: flex;
   flex-direction: column;
 }
@@ -126,6 +126,6 @@
 h2,
 h3,
 h4,
-h5 {
+h5 , .left code{
   text-transform: capitalize;
 }
