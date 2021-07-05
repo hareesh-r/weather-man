@@ -103,6 +103,13 @@
 }.left {
   color: #fff;
   max-width: 422px;
-  background: linear-gradient( rgba(104,54,57,0.6),
-  rgba(51,24,33,0.6))
+  height: 70vh;
+  background: linear-gradient(rgba(236, 132, 113, 0.5), rgba(104,54,57,0.6),
+  rgba(51,24,33,0.6));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}.left * {
+  margin-top: 10px;
 }
