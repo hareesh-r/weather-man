@@ -27,6 +27,10 @@
   background-image: url(./img/thunder.jpg);
   background-size: 100vw;
 }
+.snow {
+  background-image: url(./img/snow.jpg);
+  background-size: 100vw;
+}
 
 .response {
   text-align: center;

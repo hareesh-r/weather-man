@@ -2,3 +2,6 @@ npx create-react-app .
 
 npm start 
 
+npm install --save react-chartjs-2   
+
+npm install --save chart.js

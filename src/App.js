@@ -12,6 +12,11 @@ function App() {
   const [climateIcon, setClimateIcon] = useState("10d");
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
+  const [chennai, setChennai] = useState([]);
+  const [mumbai, setMumbai] = useState([]);
+  const [beng, setBeng] = useState([]);
+  const [kolkata, setKolkata] = useState([]);
+  const [delhi, setDelhi] = useState([]);
 
   useEffect(() => {
     var timer = setInterval(() => setDate(new Date()), 1000)
@@ -19,7 +24,7 @@ function App() {
       clearInterval(timer)
     }
   })
-  useEffect(() => { getCoordintes(); }, []);
+  useEffect(() => { getCoordintes(); getTopCity(); }, []);
 
   const API_KEY = "590ef8542927784e438ff86038506500";
   const LL_URL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
@@ -36,7 +41,6 @@ function App() {
       var crd = pos.coords;
       var lat = crd.latitude.toString();
       var lng = crd.longitude.toString();
-      console.log(`Latitude: ${lat}, Longitude: ${lng}`);
       setLat(lat);
       setLong(lng);
       return;
@@ -46,8 +50,35 @@ function App() {
     }
     navigator.geolocation.getCurrentPosition(success, error, options);
   }
+  const getTop = async (i) => {
 
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${i}&units=metric&appid=${API_KEY}`;
 
+    const api_response = await fetch(url);
+
+    const response = await api_response.json();
+
+    if (i == "chennai") {
+      setChennai([response.weather[0].main, response.main.temp]);
+    } else if (i == "mumbai") {
+      setMumbai([response.weather[0].main, response.main.temp]);
+    } else if (i == "bengaluru") {
+      setBeng([response.weather[0].main, response.main.temp]);
+    } else if (i == "delhi") {
+      setDelhi([response.weather[0].main, response.main.temp]);
+    } else if (i == "kolkata") {
+      setKolkata([response.weather[0].main, response.main.temp]);
+    }
+
+  }
+  const getTopCity = () => {
+
+    ["mumbai", "delhi", "chennai", "kolkata", "bengaluru"].map((i) => {
+
+      getTop(i);
+    })
+
+  }
 
   const getResponse = async (URL) => {
 
@@ -61,10 +92,39 @@ function App() {
 
     console.log(response);
 
+    let newClass = "";
+
     if (response.cod == "404") {
+
       setShowData(false);
 
     } else {
+
+      const weatherID = response.weather[0].id;
+
+      if (weatherID > 800)
+        newClass = "cloud";
+      else if (weatherID == 800)
+        newClass = "sun";
+      else if (weatherID > 700)
+        newClass = "cloud";
+      else if (weatherID > 600)
+        newClass = "snow";
+      else if (weatherID > 500)
+        newClass = "rain";
+      else if (weatherID > 300)
+        newClass = "rain";
+      else if (weatherID > 200)
+        newClass = "light";
+
+      var element = document.getElementById("app");
+
+      element.classList.remove("sun");
+      element.classList.remove("cloud");
+      element.classList.remove("rain");
+      element.classList.remove("light");
+      element.classList.remove("snow");
+      element.classList.add(newClass);
 
       setJSON_RESPONSE(response);
 
@@ -94,7 +154,7 @@ function App() {
 
             <div className="sideGroup">
 
-              <h2>Mumbai</h2> <code>climate</code> <p>35°C</p>
+              <h2>Mumbai</h2> <code>{mumbai[0]}</code> <p>{mumbai[1]}°C</p>
 
             </div>
 
@@ -105,7 +165,7 @@ function App() {
 
             <div className="sideGroup">
 
-              <h2>Delhi</h2> <code>climate</code> <p>35°C</p>
+              <h2>Delhi</h2> <code>{delhi[1]}</code> <p>{delhi[1]}°C</p>
 
             </div>
 
@@ -116,7 +176,7 @@ function App() {
             <img src="https://im.rediff.com/news/2014/aug/25chennai1.jpg?w=670&h=900" alt="" />
             <div className="sideGroup">
 
-              <h2>Chennai</h2> <code>climate</code> <p>35°C</p>
+              <h2>Chennai</h2> <code>{chennai[0]}</code> <p>{chennai[1]}°C</p>
 
             </div>
 
@@ -128,7 +188,7 @@ function App() {
 
             <div className="sideGroup">
 
-              <h2>Kolkata</h2> <code>climate</code> <p>35°C</p>
+              <h2>Kolkata</h2> <code>{kolkata[0]}</code> <p>{kolkata[1]}°C</p>
 
             </div>
 
@@ -140,7 +200,7 @@ function App() {
 
             <div className="sideGroup">
 
-              <h2>Bangalore</h2> <code>climate</code> <p>35°C</p>
+              <h2>Bangalore</h2> <code>{beng[0]}</code> <p>{beng[1]}°C</p>
 
             </div>
 
@@ -203,8 +263,50 @@ function App() {
           )
         }
         <div className="right">
-          
+          {/* <Line
+              height={300}
+              width={700}
+              data={{
+                labels: CNames,
+                datasets: [
+                  {
+                    fill: true,
+                    cubicInterpolationMode: "monotone",
+                    label: `Climate in ${currCountry}`,
+                    data: CTemp,
+                    backgroundColor: ["rgba(0, 0, 0, 0.5)"],
+                    borderColor: [
+                      "rgba(255, 99, 132, 0.7)",
+                      "rgba(54, 162, 235, 0.7)",
+                      "rgba(255, 206, 86, 0.7)",
+                      "rgba(75, 192, 192, 0.7)",
+                      "rgba(153, 102, 255, 0.7)",
+                      "rgba(255, 159, 64, 0.7)",
+                    ],
+                    borderWidth: 2,
+                  },
+                ],
+              }}
+              options={{
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+                plugins: {
+                  legend: {
+                    labels: {
+                      font: {
+                        size: 25,
+                      },
+                    },
+                  },
+                },
+              }}
+            /> */}
         </div>
+
       </div>
 
 
