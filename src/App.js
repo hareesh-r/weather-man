@@ -29,8 +29,8 @@ function App() {
   useEffect(() => { getCoordintes(); getTopCity(); getlist(); }, []);
 
   let API_KEY = "590ef8542927784e438ff86038506500";
-  const LL_URL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
-  const BASE_URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+  const LL_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
+  const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
 
   const getCoordintes = () => {
     var options = {
@@ -53,7 +53,7 @@ function App() {
   }
   const getTop = async (i) => {
 
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${i}&units=metric&appid=${API_KEY}`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${i}&units=metric&appid=${API_KEY}`;
 
     const api_response = await fetch(url);
 
@@ -144,7 +144,7 @@ function App() {
   const getlist = async () => {
     let tempGraph = [];
     let tempCol = [];
-    const api_response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`);
+    const api_response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`);
 
     const response = await api_response.json();
 
@@ -165,7 +165,7 @@ function App() {
         <div className="importantCity">
 
           <div
-            onClick={() => { setCity("mumbai"); getResponse(`http://api.openweathermap.org/data/2.5/weather?q=mumbai&units=metric&appid=${API_KEY}`) }}
+            onClick={() => { setCity("mumbai"); getResponse(`https://api.openweathermap.org/data/2.5/weather?q=mumbai&units=metric&appid=${API_KEY}`) }}
             className="importantCities mumbai">
 
             <img src="https://www.india-briefing.com/news/wp-content/uploads/2013/07/India-Briefing-Economy-of-Mumbai-Indias-Major-Commercial-Hub.jpg" alt="" />
@@ -178,7 +178,7 @@ function App() {
 
           </div>
 
-          <div onClick={() => { setCity("delhi"); getResponse(`http://api.openweathermap.org/data/2.5/weather?q=delhi&units=metric&appid=${API_KEY}`) }} className="importantCities delhi">
+          <div onClick={() => { setCity("delhi"); getResponse(`https://api.openweathermap.org/data/2.5/weather?q=delhi&units=metric&appid=${API_KEY}`) }} className="importantCities delhi">
             <img src="https://cdn.britannica.com/37/189837-050-F0AF383E/New-Delhi-India-War-Memorial-arch-Sir.jpg" alt="" />
 
             <div className="sideGroup">
@@ -189,7 +189,7 @@ function App() {
 
           </div>
 
-          <div onClick={() => { setCity("chennai"); getResponse(`http://api.openweathermap.org/data/2.5/weather?q=chennai&units=metric&appid=${API_KEY}`) }} className="importantCities chennai">
+          <div onClick={() => { setCity("chennai"); getResponse(`https://api.openweathermap.org/data/2.5/weather?q=chennai&units=metric&appid=${API_KEY}`) }} className="importantCities chennai">
 
             <img src="https://im.rediff.com/news/2014/aug/25chennai1.jpg?w=670&h=900" alt="" />
             <div className="sideGroup">
@@ -200,7 +200,7 @@ function App() {
 
           </div>
 
-          <div onClick={() => { setCity("kolkata"); getResponse(`http://api.openweathermap.org/data/2.5/weather?q=kolkata&units=metric&appid=${API_KEY}`) }} className="importantCities kolkata">
+          <div onClick={() => { setCity("kolkata"); getResponse(`https://api.openweathermap.org/data/2.5/weather?q=kolkata&units=metric&appid=${API_KEY}`) }} className="importantCities kolkata">
 
             <img src="https://cdn.britannica.com/75/121075-050-CBF79FB6/Victoria-Statue-front-Memorial-Hall-Kolkata-West.jpg" alt="" />
 
@@ -212,7 +212,7 @@ function App() {
 
           </div>
 
-          <div onClick={() => { setCity("Bangalore"); getResponse(`http://api.openweathermap.org/data/2.5/weather?q=Bangalore&units=metric&appid=${API_KEY}`) }} className="importantCities bangalore">
+          <div onClick={() => { setCity("Bangalore"); getResponse(`https://api.openweathermap.org/data/2.5/weather?q=Bangalore&units=metric&appid=${API_KEY}`) }} className="importantCities bangalore">
 
             <img src="https://lp-cms-production.imgix.net/2019-06/9483508eeee2b78a7356a15ed9c337a1-bengaluru-bangalore.jpg" alt="" />
 
@@ -251,7 +251,7 @@ function App() {
 
               <h4>{days[date.getDay()]}</h4>
 
-              <img src={`http://openweathermap.org/img/wn/${climateIcon}@2x.png`} alt="" />
+              <img src={`https://openweathermap.org/img/wn/${climateIcon}@2x.png`} alt="" />
 
               <code>{JSON_RESPONSE.weather[0].description}</code>
 
