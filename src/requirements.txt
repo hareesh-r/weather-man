@@ -5,3 +5,5 @@ npm start
 npm install --save react-chartjs-2   
 
 npm install --save chart.js
+
+npm install -g firebase-tools

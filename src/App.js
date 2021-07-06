@@ -29,10 +29,8 @@ function App() {
   useEffect(() => { getCoordintes(); getTopCity(); getlist(); }, []);
 
   let API_KEY = "590ef8542927784e438ff86038506500";
-  API_KEY = "bf2739a632bb9f29a37f9a4359c75846";
   const LL_URL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
   const BASE_URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
-  const DAYS_URL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
 
   const getCoordintes = () => {
     var options = {
@@ -292,7 +290,7 @@ function App() {
                 {
                   fill: true,
                   cubicInterpolationMode: "monotone",
-                  label: `Climate in CityName`,
+                  label: `Climate in ${city}`,
                   data: tempGraphValue,
                   backgroundColor: ["rgba(0, 0, 0, 0.5)"],
                   borderColor: [
