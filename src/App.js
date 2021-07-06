@@ -27,7 +27,7 @@ function App() {
     }
   })
   useEffect(() => { getCoordintes(); getTopCity(); getlist(); }, []);
-
+ 
   let API_KEY = "590ef8542927784e438ff86038506500";
   const LL_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
   const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
