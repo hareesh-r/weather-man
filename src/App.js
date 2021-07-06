@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
-
+import { Line, Bar } from "react-chartjs-2";
 
 function App() {
   const [city, setCity] = useState("Chennai");
@@ -8,7 +8,6 @@ function App() {
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [showData, setShowData] = useState(false);
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const [climateIcon, setClimateIcon] = useState("10d");
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
@@ -17,16 +16,20 @@ function App() {
   const [beng, setBeng] = useState([]);
   const [kolkata, setKolkata] = useState([]);
   const [delhi, setDelhi] = useState([]);
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const [tempGraphValue, setTempGraphValue] = useState([]);
+  const [tempColValue, setTempColValue] = useState([]);
 
   useEffect(() => {
-    var timer = setInterval(() => setDate(new Date()), 1000)
+    var timer = setInterval(() => setDate(new Date()), 60000)
     return function cleanup() {
       clearInterval(timer)
     }
   })
-  useEffect(() => { getCoordintes(); getTopCity(); }, []);
+  useEffect(() => { getCoordintes(); getTopCity(); getlist(); }, []);
 
-  const API_KEY = "590ef8542927784e438ff86038506500";
+  let API_KEY = "590ef8542927784e438ff86038506500";
+  API_KEY = "bf2739a632bb9f29a37f9a4359c75846";
   const LL_URL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
   const BASE_URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
   const DAYS_URL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
@@ -82,8 +85,6 @@ function App() {
 
   const getResponse = async (URL) => {
 
-    console.log(URL)
-
     console.log("Waiting for responses...");
 
     const api_response = await fetch(URL);
@@ -92,7 +93,7 @@ function App() {
 
     console.log(response);
 
-    let newClass = "";
+    let newClass = "snow";
 
     if (response.cod == "404") {
 
@@ -106,15 +107,15 @@ function App() {
         newClass = "cloud";
       else if (weatherID == 800)
         newClass = "sun";
-      else if (weatherID > 700)
+      else if (weatherID >= 700)
         newClass = "cloud";
-      else if (weatherID > 600)
+      else if (weatherID >= 600)
         newClass = "snow";
-      else if (weatherID > 500)
+      else if (weatherID >= 500)
         newClass = "rain";
-      else if (weatherID > 300)
+      else if (weatherID >= 300)
         newClass = "rain";
-      else if (weatherID > 200)
+      else if (weatherID >= 200)
         newClass = "light";
 
       var element = document.getElementById("app");
@@ -126,6 +127,7 @@ function App() {
       element.classList.remove("snow");
       element.classList.add(newClass);
 
+
       setJSON_RESPONSE(response);
 
       setClimateIcon(response.weather[0].icon);
@@ -135,8 +137,26 @@ function App() {
       setCity(response.name);
 
       setShowData(true);
+
+      getlist()
     }
 
+  }
+
+  const getlist = async () => {
+    let tempGraph = [];
+    let tempCol = [];
+    const api_response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`);
+
+    const response = await api_response.json();
+
+    response.list.map((i) => {
+      tempGraph.push(i.main.temp);
+      tempCol.push(i.dt_txt.slice(0, 10));
+    })
+
+    setTempGraphValue(tempGraph);
+    setTempColValue(tempCol);
   }
 
   return (
@@ -263,53 +283,44 @@ function App() {
           )
         }
         <div className="right">
-          {/* <Line
-              height={300}
-              width={700}
-              data={{
-                labels: CNames,
-                datasets: [
-                  {
-                    fill: true,
-                    cubicInterpolationMode: "monotone",
-                    label: `Climate in ${currCountry}`,
-                    data: CTemp,
-                    backgroundColor: ["rgba(0, 0, 0, 0.5)"],
-                    borderColor: [
-                      "rgba(255, 99, 132, 0.7)",
-                      "rgba(54, 162, 235, 0.7)",
-                      "rgba(255, 206, 86, 0.7)",
-                      "rgba(75, 192, 192, 0.7)",
-                      "rgba(153, 102, 255, 0.7)",
-                      "rgba(255, 159, 64, 0.7)",
-                    ],
-                    borderWidth: 2,
-                  },
-                ],
-              }}
-              options={{
-                maintainAspectRatio: false,
-                scales: {
-                  y: {
-                    beginAtZero: true,
-                  },
+          <Line
+            height={300}
+            width={700}
+            data={{
+              labels: tempColValue,
+              datasets: [
+                {
+                  fill: true,
+                  cubicInterpolationMode: "monotone",
+                  label: `Climate in CityName`,
+                  data: tempGraphValue,
+                  backgroundColor: ["rgba(0, 0, 0, 0.5)"],
+                  borderColor: [
+                    "rgba(255, 99, 132, 0.7)",
+                    "rgba(54, 162, 235, 0.7)",
+                    "rgba(255, 206, 86, 0.7)",
+                    "rgba(75, 192, 192, 0.7)",
+                    "rgba(153, 102, 255, 0.7)",
+                    "rgba(255, 159, 64, 0.7)",
+                  ],
+                  borderWidth: 2,
                 },
-                plugins: {
-                  legend: {
-                    labels: {
-                      font: {
-                        size: 25,
-                      },
-                    },
-                  },
-                },
-              }}
-            /> */}
+              ],
+            }}
+            options={{
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                }, animation: {
+                  duration: 0
+                }
+              }
+            }}
+          />
         </div>
 
       </div>
-
-
 
     </div>
   );
