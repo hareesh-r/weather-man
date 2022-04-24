@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Oleo+Script+Swash+Caps:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+
+  font-family: 'Courgette', cursive;
+  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Oleo Script Swash Caps', cursive;
 }
 
 .App {
@@ -27,6 +33,7 @@
   background-image: url(./img/thunder.jpg);
   background-size: 100vw;
 }
+
 .snow {
   background-image: url(./img/snow.jpg);
   background-size: 100vw;
@@ -161,4 +168,124 @@ h5,
 .bottom {
   display: flex;
   flex-direction: row;
+}
+
+.Login {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('https://wallpaperaccess.com/full/1540002.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position-y: -200px;
+  /* filter: blur(3px); */
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  filter: blur(0px);
+  width: 300px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.807);
+}
+
+.container img {
+  width: 200px;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.left-align {
+  align-items: start;
+}
+
+.input-grp input {
+  height: 40px;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0);
+  outline-width: 0px;
+  border: none;
+  border-radius: 15px;
+  color: white;
+}
+
+.container button {
+
+  outline-width: 0px;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: #962d6b;
+  width: 100px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.container>h1 {
+  margin-bottom: 50px;
+}
+
+.link {
+  color: rgb(31, 218, 231);
+}
+
+.mt10 {
+  margin-top: 20px;
+}
+
+.favorite {
+  margin-left: 20px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+.fav-left {
+  position: absolute;
+  top: 70px;
+  color: #fff;
+  transform: rotate(270deg);
+  filter: drop-shadow(2px 4px 6px black);
+  cursor: pointer;
+}
+
+.fav-left img {
+  width: 30px;
+  height: 30px;
+}
+
+.fav-list {
+  position: absolute;
+  height: 50vh;
+  width: 50vw;
+  top: 20%;
+  right: 25%;
+}
+
+.fav-list {
+  background-color: rgba(2, 2, 2, 0.251);
+  filter: blur(0px) !important;
+  color: #fff;
+  box-shadow: 1px 2px 36px 7px rgba(0,0,0,0.75);
+}
+.fav-city {
+  cursor: pointer;
+  text-transform: capitalize;
+}
+.blur {
+  filter: blur(5px);
 }
